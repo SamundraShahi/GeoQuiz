@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 public class QuizActivity extends AppCompatActivity {
 
+    // just some changes
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
