@@ -12,7 +12,12 @@ public class QuizActivity extends AppCompatActivity {
     private Button mTrueButton;
     private Button mFalseButton;
 
+    private int mCurrentIndex = 0;
+
     private static final String TAG = "QuizActivity";
+
+    // adding key, when rotation, save data and read back
+    private static final String KEY_INDEX ="index";
 
     // this is created when instance of activity class is created.
     @Override
@@ -23,6 +28,10 @@ public class QuizActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate(Bundle) called");
 
         setContentView(R.layout.activity_quiz);
+
+        if(savedInstanceState != null) {
+            mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
+        }
 
         // FOR TRUE BUTTON
         // getting the reference of widgets
@@ -56,6 +65,7 @@ public class QuizActivity extends AppCompatActivity {
         });
     }
 
+
     @Override
     public void onStart() {
         super.onStart();
@@ -73,6 +83,15 @@ public class QuizActivity extends AppCompatActivity {
         super.onPause();
         Log.d(TAG, "onPause() called");
     }
+
+
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        Log.i(TAG, "onSaveInstanceState");
+        savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);    }
+
 
     @Override
     public void onStop() {
